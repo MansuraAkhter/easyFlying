@@ -1,12 +1,16 @@
 const express = require("express");
 
+
 const server = express();
+const homepageController = require("./controller/homepage");
 
 
-server.get("/", (req, res) => {
-   res.send("This is working");
-})
+server.get("/", homepageController);
+
+
 
 server.listen(8080, () => {
     console.log("Server is running...");
-})
+});
+
+
