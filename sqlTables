@@ -1,0 +1,50 @@
+CREATE TABLE passenger (
+    userID int AUTO_INCREMENT,
+    name varchar(50),
+    email varchar(50),
+    password varchar(255),
+    address varchar(255),
+    phoneNumber varchar(20),
+    passportNumber int,
+    nationalID int,
+    creditCard varchar(100),
+    Primary Key(userID)
+);
+
+CREATE TABLE flight(
+    airlineID int AUTO_INCREMENT,
+    airlineName varchar(20),
+    airlineType varchar(20),
+    source varchar(20),
+    destination varchar(20),
+    departureTime datetime,
+    arrivalTime datetime,
+    seatsAvailable int,
+    Primary Key(airlineID)
+);
+
+CREATE TABLE seatClass (
+    seatID INT AUTO_INCREMENT,
+    airlineID int,
+    seatClass varchar(20),
+    Primary Key(seatID),
+    Foreign Key(airlineID) references flight(airlineID) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+CREATE TABLE bookingTicket (
+    bookingID int AUTO_INCREMENT,
+    airlineID int,
+    passengerID int,
+    seatNumber int,
+    totalPrice decimal,
+    Primary Key(bookingID),
+    Foreign Key(passengerID) references passenger(passengerID) ON UPDATE CASCADE ON DELETE CASCADE,
+    Foreign Key(airlineID) references flight(airlineID) ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+CREATE TABLE admins (
+    email varchar(50),
+    password varchar(255),
+    Primary Key(email)
+);
+
