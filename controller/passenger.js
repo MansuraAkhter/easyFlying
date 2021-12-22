@@ -37,7 +37,7 @@ module.exports.login = async (req, res) => {
             if(match) {
                 const token = await jwt.sign({userID: loginResults[0].userID}, process.env.JWT_SECRET);
                 res.cookie('jwt', token, {
-                    maxAge: 900000,
+                    maxAge: 900000000,
                     httpOnly: true
                 });
                 res.send("suceess");
