@@ -4,7 +4,7 @@ import axios from 'axios';
 
 
 
-function App() {
+function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState(''); 
 
@@ -16,7 +16,7 @@ function App() {
     }, {
       withCredentials: true
     })
-    console.log(results);
+    console.log(results.data);
   }
   return (
     <div>
@@ -27,6 +27,12 @@ function App() {
       <button onClick={login}> Login</button>
     </div>
   );
+
+  async function register(){
+    const results = await axios.post("http/localhost:8080/api/user/register",{
+      
+    })
+  }
 }
 
-export default App;
+export default Login;
