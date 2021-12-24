@@ -1,14 +1,16 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./Login.css";
 
 function Login() {
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   async function login() {
     const results = await axios.post(
-      "http://localhost:8080/api/user/login",
+      "http://localhost:8080/api/admin/login",
       {
         email: email,
         password: password,
@@ -18,6 +20,10 @@ function Login() {
       }
     );
     console.log(results.data);
+    if (results.data.success) {
+      window.alert("logged in successfully");
+      navigate("/");
+    }
   }
   return (
     <div>
