@@ -2,27 +2,20 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./index.css";
-import Layout from "./routes/Layout";
-import Login from "./routes/Login";
-import Register from "./routes/Register";
-import Home from "./routes/Home";
-import AdminLogin from "./routes/AdminLogin";
+import App from "./App";
+import axios from "axios";
 
 var mydata = {
   name: "mansura",
   age: 23,
 };
 
+axios.defaults.baseURL = "http://localhost:8080";
+axios.defaults.withCredentials = true;
+
 ReactDOM.render(
   <BrowserRouter>
-    <Routes>
-      <Route path="/" element={<Layout />}>
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/admin/login" element={<AdminLogin />} />
-        <Route index element={<Home />} />
-      </Route>
-    </Routes>
+    <App />
   </BrowserRouter>, // React.createElement(Hello, {datafrominternet: {}, class: "name"}) // Hello({id: "myid", class: "name"})
   document.getElementById("root")
 );

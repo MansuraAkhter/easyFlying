@@ -1,11 +1,16 @@
 import { Link, Outlet } from "react-router-dom";
 
-const Layout = () => {
+const Layout = (props) => {
+  let auth = props.auth;
   return (
     <div>
       Layout
-      <Link to="/login">Login</Link>
-      <Link to="/register">Register</Link>
+      {!auth && (
+        <>
+          <Link to="/login">Login</Link>
+          <Link to="/register">Register</Link>
+        </>
+      )}
       <Link to="/admin/login">AdminPannel</Link>
       <Outlet />
     </div>

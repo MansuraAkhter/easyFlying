@@ -7,6 +7,8 @@ const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const passenger = require("./controller/passenger.js");
 const admin = require("./controller/admin");
+const flights = require("./controller/flights");
+const auth = require("./middlewares/auth");
 
 const app = express();
 
@@ -27,8 +29,21 @@ app.get("/", homepageController);
 
 app.post("/api/user/register", passenger.register);
 app.post("/api/user/login", passenger.login);
+app.post("/api/user/checklogin", passenger.checklogin);
 app.post("/api/admin/register", admin.register);
 app.post("/api/admin/login", admin.login);
+app.post("/api/admin/addflights", flights.addflights);
+app.get("/api/admin/getflights", flights.getflights);
+app.post(
+  "/api/admin/updateflights/:flightID",
+  auth.admin,
+  flights.updateflights
+);
+app.post(
+  "/api/admin/deleteflights/:flightID",
+  auth.admin,
+  flights.deleteflights
+);
 
 app.listen(8080, () => {
   console.log("Server is running...");

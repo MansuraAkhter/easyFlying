@@ -8,7 +8,7 @@ function Login() {
 
   async function login() {
     const results = await axios.post(
-      "http://localhost:8080/api/user/login",
+      "/api/user/login",
       {
         email: email,
         password: password,

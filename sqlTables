@@ -10,28 +10,31 @@ CREATE TABLE passenger (
 );
 
 CREATE TABLE flight(
-    airlineID int AUTO_INCREMENT,
+    flightID int AUTO_INCREMENT,
     airlineName varchar(20),
-    airlineType varchar(20),
     source varchar(20),
+    sourceAirport varchar(20),
     destination varchar(20),
-    departureTime datetime,
-    arrivalTime datetime,
-    businessSeatsAvailble int,
+    destinationAirport varchar(20),
+    departureDateTime datetime,
+    arrivalDateTime datetime,
+    businessSeat int,
     businessPrice decimal,
-    economySeatsAvailable int,
-    enonomyPrice decimal,
-    Primary Key(airlineID)
+    economySeat int,
+    economyPrice decimal,
+    firstclassSeat int,
+    firstclassPrice decimal,
+    Primary Key(flightID)
 );
 
 CREATE TABLE ticket (
     ticketID int AUTO_INCREMENT,
-    airlineID int,
+    flightID int,
     userID int,
     totalPrice decimal,
     Primary Key(ticketID),
     Foreign Key(userID) references passenger(userID) ON UPDATE CASCADE ON DELETE CASCADE,
-    Foreign Key(airlineID) references flight(airlineID) ON UPDATE CASCADE ON DELETE CASCADE
+    Foreign Key(flightID) references flight(flightID) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 CREATE TABLE admin (

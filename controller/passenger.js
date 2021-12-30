@@ -51,3 +51,23 @@ module.exports.login = async (req, res) => {
     res.send("Error in login");
   }
 };
+
+module.exports.checklogin = async (req, res) => {
+  const error = {
+    success: false,
+    msg: "not authenticated",
+  };
+  const jwtToken = req.cookies["jwt"];
+  if (typeof jwtToken === "undefined") {
+    console.log("no token");
+    return res.send(error);
+  } else {
+    try {
+      const user = await jwt.verify(jwtToken, process.env.JWT_SECRET);
+      return res.send({ success: true, userID: user.userID });
+    } catch (err) {
+      console.log(err);
+      return res.send(error);
+    }
+  }
+};

@@ -13,14 +13,11 @@ const Register = () => {
       window.alert("password donot match");
       return;
     }
-    const results = await axios.post(
-      "http://localhost:8080/api/user/register",
-      {
-        email: email,
-        password: password,
-        confirmPass: confirmPass,
-      }
-    );
+    const results = await axios.post("/api/user/register", {
+      email: email,
+      password: password,
+      confirmPass: confirmPass,
+    });
     if (results.data.success) {
       window.alert("Account created. Please login using your account!");
       navigate("/login");
