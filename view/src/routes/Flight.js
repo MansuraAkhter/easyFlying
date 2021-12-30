@@ -84,13 +84,13 @@ const Flight = () => {
         value={formData.source}
       />
       <br />
-      <label htmlFor="depatureAirport">Depature Airport: </label>
+      <label htmlFor="sourceAirport">Source Airport: </label>
       <input
         type="text"
-        placeholder="Departure Airport"
+        placeholder="Source Airport"
         onChange={handleChange}
-        name="departureAirport"
-        value={formData.departureAirport}
+        name="sourceAirport"
+        value={formData.sourceAirport}
       />
       <br />
       <label htmlFor="destination">Destination: </label>

@@ -34,16 +34,8 @@ app.post("/api/admin/register", admin.register);
 app.post("/api/admin/login", admin.login);
 app.post("/api/admin/addflights", flights.addflights);
 app.get("/api/admin/getflights", flights.getflights);
-app.post(
-  "/api/admin/updateflights/:flightID",
-  auth.admin,
-  flights.updateflights
-);
-app.post(
-  "/api/admin/deleteflights/:flightID",
-  auth.admin,
-  flights.deleteflights
-);
+app.post("/api/admin/updateflights/:flightID", flights.updateflights);
+app.post("/api/admin/deleteflights/:flightID", flights.deleteflights);
 
 app.listen(8080, () => {
   console.log("Server is running...");

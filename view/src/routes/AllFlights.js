@@ -4,11 +4,16 @@ import { Link } from "react-router-dom";
 
 const AllFlights = (props) => {
   const { allflights, setAllFlights } = props;
+  const [refresh, setRefresh] = useState(true);
 
   useEffect(async () => {
     const results = await axios.get("/api/admin/getflights");
     setAllFlights(results.data);
-  }, []);
+  }, [refresh]);
+  async function deleteFlight(flightID) {
+    const results = await axios.post(`/api/admin/deleteflights/${flightID}`);
+    setRefresh((prev) => !prev);
+  }
   return (
     <div>
       {allflights.length > 0
@@ -35,6 +40,9 @@ const AllFlights = (props) => {
                 <div>First class seat price: {flight.firstclassPrice}</div>
                 <br></br>
                 <Link to={`/admin/updateflight/${flight.flightID}`}>Edit</Link>
+                <button onClick={() => deleteFlight(flight.flightID)}>
+                  Delete{" "}
+                </button>
               </div>
             );
           })
