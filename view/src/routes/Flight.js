@@ -10,10 +10,6 @@ const Flight = () => {
     sourceAirport: "",
     destination: "",
     destinationAirport: "",
-    departureDate: "",
-    arrivalDate: "",
-    departureTime: "",
-    arrivalTime: "",
     businessSeat: "",
     businessPrice: "",
     economySeat: "",
@@ -31,12 +27,46 @@ const Flight = () => {
     setFormData((prevFormData) => {
       return {
         ...prevFormData,
-        [name]: type === "checkbox" ? checked : value,
+        [name]: value,
       };
     });
   }
+  async function addFlight(event) {
+    event.preventDefault();
+    console.log(formData);
+    const departureDateTime =
+      depatureDate.getFullYear() +
+      "-" +
+      depatureDate.getMonth() +
+      "-" +
+      depatureDate.getDay() +
+      " " +
+      departureTime +
+      ":00";
+    const arrivalDateTime =
+      arrivalDate.getFullYear() +
+      "-" +
+      arrivalDate.getMonth() +
+      "-" +
+      arrivalDate.getDay() +
+      " " +
+      arrivalTime +
+      ":00";
+    console.log(arrivalDateTime);
+    setFormData((prevFormData) => {
+      return {
+        ...prevFormData,
+        departureDateTime: departureDateTime,
+        arrivalDateTime: arrivalDateTime,
+      };
+    });
+    const results = await axios.post("/api/admin/addflights", formData);
+    console.log(results.data);
+  }
+
   return (
     <form>
+      <label htmlFor="airlineName">Airline Name: </label>
       <input
         type="text"
         placeholder="Airline Name"
@@ -45,7 +75,7 @@ const Flight = () => {
         value={formData.airlineName}
       />
       <br />
-
+      <label htmlFor="source">Source: </label>
       <input
         type="text"
         placeholder="From"
@@ -54,7 +84,7 @@ const Flight = () => {
         value={formData.source}
       />
       <br />
-
+      <label htmlFor="depatureAirport">Depature Airport: </label>
       <input
         type="text"
         placeholder="Departure Airport"
@@ -63,6 +93,7 @@ const Flight = () => {
         value={formData.departureAirport}
       />
       <br />
+      <label htmlFor="destination">Destination: </label>
       <input
         type="text"
         placeholder="To"
@@ -71,6 +102,7 @@ const Flight = () => {
         value={formData.destination}
       />
       <br />
+      <label htmlFor="destinationAirport">Destination Airport: </label>
       <input
         type="text"
         placeholder="Destination Airport"
@@ -80,6 +112,7 @@ const Flight = () => {
       />
       <br />
       <div>
+        <label> Depature Date: </label>
         <DatePicker
           selected={depatureDate}
           onChange={(date) => setDepatureDate(date)}
@@ -87,27 +120,30 @@ const Flight = () => {
       </div>
       <br />
       <div>
-        <TimePicker onChange={() => {}} />
+        <label>Depature Time</label>
+        <TimePicker
+          onChange={(time) => setDepartureTime(time)}
+          value={departureTime}
+        />
       </div>
       <br />
       <div>
+        <label>Arrival Date</label>
         <DatePicker
           selected={arrivalDate}
-          onChange={(date) =>
-            console.log(date.getDate(), date.getFullYear(), date.getMonth())
-          }
+          onChange={(date) => setArrivalDate(date)}
         />
       </div>
       <br />
       <div>
+        <label>Arrival Time</label>
         <TimePicker
-          onChange={(date) => {
-            console.log(date);
-            // console.log(date.getHours(), date.getMinutes(), date.getSeconds());
-          }}
+          onChange={(time) => setArrivalTime(time)}
+          value={arrivalTime}
         />
       </div>
       <br />
+      <label htmlFor="businessSeat">Business Seat Count: </label>
       <input
         type="number"
         pattern="[0-9]{0-4}"
@@ -117,6 +153,7 @@ const Flight = () => {
         value={formData.businessSeat}
       />
       <br />
+      <label htmlFor="businessPrice">Business Seat Price: </label>
       <input
         type="text"
         placeholder="Business class Price"
@@ -125,7 +162,7 @@ const Flight = () => {
         value={formData.businessPrice}
       />
       <br />
-
+      <label htmlFor="economySeat">Economy Seat Count: </label>
       <input
         type="number"
         pattern="[0-9]{0-4}"
@@ -135,6 +172,7 @@ const Flight = () => {
         value={formData.economySeat}
       />
       <br />
+      <label htmlFor="economyPrice">Economy seat price: </label>
       <input
         type="text"
         placeholder="Economy class Price"
@@ -143,6 +181,7 @@ const Flight = () => {
         value={formData.economyPrice}
       />
       <br />
+      <label htmlFor="firstclassSeat">First class seat count: </label>
       <input
         type="number"
         pattern="[0-9]{0-4}"
@@ -153,6 +192,7 @@ const Flight = () => {
       />
 
       <br />
+      <label htmlFor="firstclassPrice">First class seat price: </label>
       <input
         type="text"
         placeholder="First class Price"
@@ -161,43 +201,9 @@ const Flight = () => {
         value={formData.firstclassPrice}
       />
       <br />
-
-      <fieldset>
-        <legend></legend>
-
-        <input
-          type="radio"
-          id="unemployed"
-          name="employment"
-          value="unemployed"
-          checked={formData.employment === "unemployed"}
-          onChange={handleChange}
-        />
-        <label htmlFor="unemployed">Unemployed</label>
-        <br />
-
-        <input
-          type="radio"
-          id="part-time"
-          name="employment"
-          value="part-time"
-          checked={formData.employment === "part-time"}
-          onChange={handleChange}
-        />
-        <label htmlFor="part-time">Part-time</label>
-        <br />
-
-        <input
-          type="radio"
-          id="full-time"
-          name="employment"
-          value="full-time"
-          checked={formData.employment === "full-time"}
-          onChange={handleChange}
-        />
-        <label htmlFor="full-time">Full-time</label>
-        <br />
-      </fieldset>
+      <button className="button" onClick={addFlight}>
+        Add Flight
+      </button>
     </form>
   );
 };

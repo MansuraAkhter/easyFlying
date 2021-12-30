@@ -3,7 +3,7 @@ const flights = require("../model/flights");
 module.exports.getflights = async (req, res) => {
   try {
     const modelflights = await flights.getFlights(req.body);
-    res.send({ success: true, flights: modelflights });
+    res.send(modelflights);
   } catch (err) {
     console.log(err);
     res.send(err);
