@@ -28,14 +28,13 @@ module.exports.getFlights = async (body) => {
   return results;
 };
 
-// module.exports.getFlights = async (body) => {
-//   const { firstDepartureDateTime, secondDepartureDateTime } = body;
-//   const [results, feilds] = await db.query(
-//     "Select * from flight where departureDateTime >= ? and departureDateTime <= ?",
-//     [firstDepartureDateTime, secondDepartureDateTime]
-//   );
-//   return results;
-// };
+module.exports.getFlight = async (flightID) => {
+  const [results, feilds] = await db.query(
+    "Select * from flight where flightID = ?",
+    [flightID]
+  );
+  return results;
+};
 
 module.exports.updateFlight = async (id, body) => {
   const [results, feilds] = await db.query(

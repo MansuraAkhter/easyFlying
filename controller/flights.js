@@ -10,6 +10,17 @@ module.exports.getflights = async (req, res) => {
   }
 };
 
+module.exports.getflight = async (req, res) => {
+  const flightID = req.params.flightID;
+  try {
+    const modelflights = await flights.getFlight(flightID);
+    res.send(modelflights);
+  } catch (err) {
+    console.log(err);
+    res.send(err);
+  }
+};
+
 module.exports.addflights = async (req, res) => {
   const body = req.body;
 

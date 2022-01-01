@@ -4,7 +4,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { Link, useNavigate } from "react-router-dom";
 
-function Home() {
+function Search() {
   const navigate = useNavigate();
   const [firstDepatureDate, setFirstDepatureDate] = useState(null);
   const [secondDepatureDate, setSecondDepatureDate] = useState(null);
@@ -53,13 +53,12 @@ function Home() {
   }
 
   return (
-    <div className="container-mid">
+    <div>
       <label htmlFor="source">From: </label>
       <input
         type="text"
         name="source"
-        className="login__input"
-        placeholder="Source"
+        placeholder="search.."
         value={formData.source}
         onChange={handleChange}
       />
@@ -68,17 +67,14 @@ function Home() {
       <input
         type="text"
         name="destination"
-        className="login__input"
-        placeholder="Destination"
+        placeholder="search.."
         value={formData.destination}
         onChange={handleChange}
       />
       <br />
       <div>
-        <div> Depature Date between: </div>
+        <label> Depature Date between: </label>
         <DatePicker
-          className="login__input"
-          placeholderText="from"
           selected={firstDepatureDate}
           onChange={(date) => setFirstDepatureDate(date)}
         />
@@ -86,37 +82,24 @@ function Home() {
       <br />
       <div>
         <DatePicker
-          className="login__input"
-          placeholderText="to"
-          popperPlacement="top"
           selected={secondDepatureDate}
           onChange={(date) => setSecondDepatureDate(date)}
         />
       </div>
       <br />
-      <button className="login__submit" onClick={searchFlight}>
+      <button className="button" onClick={searchFlight}>
         Search
       </button>
 
       {allFlights.length > 0 ? (
         <div>
-          <div className="info">Available Flights</div>
           {allFlights.map((flight) => {
             console.log(flight);
             return (
-              <div className="flight-container">
+              <>
                 <div>{flight.airlineName}</div>
-                <div>
-                  From: {flight.source}, {flight.sourceAirport}
-                </div>
-                <div>
-                  To: {flight.destination}, {flight.destinationAirport}
-                </div>
-                <div>{new Date(flight.departureDateTime).toUTCString()}</div>
-                <Link className="link" to={`/book/${flight.flightID}`}>
-                  Book
-                </Link>
-              </div>
+                <Link to={`/book/${flight.flightID}`}>Book</Link>
+              </>
             );
           })}
         </div>
@@ -127,4 +110,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default Search;

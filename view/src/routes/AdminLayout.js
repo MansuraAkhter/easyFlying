@@ -1,8 +1,7 @@
-import { Link, Outlet, useNavigate } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 
-const Layout = (props) => {
-  let auth = props.auth;
-  let navigate = useNavigate();
+const AdminLayout = (props) => {
+  let auth = props.adminAuth;
   return (
     <>
       <div className="navbar">
@@ -28,15 +27,17 @@ const Layout = (props) => {
 
         <div>
           {!auth && (
-            <>
-              <Link className="link" to="/login">
-                Login
-              </Link>
-              <Link className="link" to="/register">
-                Register
-              </Link>
-            </>
+            <Link className="link" to="login">
+              Login
+            </Link>
           )}
+
+          <Link className="link" to="allflights">
+            All Flights
+          </Link>
+          <Link className="link" to="addflights">
+            Add a Flight
+          </Link>
         </div>
       </div>
       <Outlet />
@@ -44,4 +45,4 @@ const Layout = (props) => {
   );
 };
 
-export default Layout;
+export default AdminLayout;

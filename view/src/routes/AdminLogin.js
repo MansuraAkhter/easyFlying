@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./Login.css";
 
-function Login() {
+function Login(props) {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -22,13 +22,16 @@ function Login() {
     console.log(results.data);
     if (results.data.success) {
       window.alert("logged in successfully");
-      navigate("/");
+      props.setAdminAuth(true);
+      navigate("/admin/allflights");
     }
   }
   return (
-    <div>
+    <div className="container-mid">
       <input
         type="text"
+        className="login__input"
+        placeholder="Email"
         value={email}
         onChange={(event) => {
           setEmail(event.target.value);
@@ -37,13 +40,15 @@ function Login() {
       <br />
       <input
         type="password"
+        className="login__input"
+        placeholder="password"
         value={password}
         onChange={(event) => {
           setPassword(event.target.value);
         }}
       />
 
-      <button className="button" onClick={login}>
+      <button className="login__submit" onClick={login}>
         {" "}
         Login
       </button>

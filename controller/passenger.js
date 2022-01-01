@@ -40,7 +40,7 @@ module.exports.login = async (req, res) => {
           maxAge: 900000000,
           httpOnly: true,
         });
-        res.send({ hello: "world" });
+        res.send({ success: true });
       } else {
         res.send("password mismatch");
       }

@@ -25,10 +25,12 @@ const Register = () => {
   }
 
   return (
-    <div>
+    <div className="container-mid">
       <input
         type="text"
         value={email}
+        placeholder="Email"
+        className="login__input"
         onChange={(event) => {
           setEmail(event.target.value);
         }}
@@ -36,6 +38,8 @@ const Register = () => {
       <input
         type="password"
         value={password}
+        className="login__input"
+        placeholder="Password"
         onChange={(event) => {
           setPassword(event.target.value);
         }}
@@ -43,11 +47,13 @@ const Register = () => {
       <input
         type="password"
         value={confirmPass}
+        className="login__input"
+        placeholder="Confirm Password"
         onChange={(event) => {
           setConfirmPass(event.target.value);
         }}
       />
-      <button className="button" onClick={register}>
+      <button className="login__submit" onClick={register}>
         {" "}
         Register{" "}
       </button>

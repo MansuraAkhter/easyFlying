@@ -76,11 +76,12 @@ const UpdateFlight = (props) => {
     console.log(results.data);
   }
   return (
-    <form>
+    <form className="container-mid">
       <label htmlFor="airlineName">Airline Name: </label>
       <input
         type="text"
         placeholder="Airline Name"
+        className="login__input"
         onChange={handleChange}
         name="airlineName"
         value={formData.airlineName}
@@ -90,6 +91,7 @@ const UpdateFlight = (props) => {
       <input
         type="text"
         placeholder="From"
+        className="login__input"
         onChange={handleChange}
         name="source"
         value={formData.source}
@@ -99,6 +101,7 @@ const UpdateFlight = (props) => {
       <input
         type="text"
         placeholder="Source Airport"
+        className="login__input"
         onChange={handleChange}
         name="sourceAirport"
         value={formData.sourceAirport}
@@ -108,6 +111,7 @@ const UpdateFlight = (props) => {
       <input
         type="text"
         placeholder="To"
+        className="login__input"
         onChange={handleChange}
         name="destination"
         value={formData.destination}
@@ -118,6 +122,7 @@ const UpdateFlight = (props) => {
         type="text"
         placeholder="Destination Airport"
         onChange={handleChange}
+        className="login__input"
         name="destinationAirport"
         value={formData.destinationAirport}
       />
@@ -126,6 +131,7 @@ const UpdateFlight = (props) => {
         <label> Depature Date: </label>
         <DatePicker
           selected={depatureDate}
+          className="login__input"
           onChange={(date) => setDepatureDate(date)}
         />
       </div>
@@ -142,6 +148,7 @@ const UpdateFlight = (props) => {
         <label>Arrival Date</label>
         <DatePicker
           selected={arrivalDate}
+          className="login__input"
           onChange={(date) => setArrivalDate(date)}
         />
       </div>
@@ -157,6 +164,7 @@ const UpdateFlight = (props) => {
       <label htmlFor="businessSeat">Business Seat Count: </label>
       <input
         type="number"
+        className="login__input"
         pattern="[0-9]{0-4}"
         placeholder="Business class seat count"
         onChange={handleChange}
@@ -167,6 +175,7 @@ const UpdateFlight = (props) => {
       <label htmlFor="businessPrice">Business Seat Price: </label>
       <input
         type="text"
+        className="login__input"
         placeholder="Business class Price"
         onChange={handleChange}
         name="businessPrice"
@@ -176,6 +185,7 @@ const UpdateFlight = (props) => {
       <label htmlFor="economySeat">Economy Seat Count: </label>
       <input
         type="number"
+        className="login__input"
         pattern="[0-9]{0-4}"
         placeholder="Economy class seat count"
         onChange={handleChange}
@@ -186,6 +196,7 @@ const UpdateFlight = (props) => {
       <label htmlFor="economyPrice">Economy seat price: </label>
       <input
         type="text"
+        className="login__input"
         placeholder="Economy class Price"
         onChange={handleChange}
         name="economyPrice"
@@ -195,6 +206,7 @@ const UpdateFlight = (props) => {
       <label htmlFor="firstclassSeat">First class seat count: </label>
       <input
         type="number"
+        className="login__input"
         pattern="[0-9]{0-4}"
         placeholder="First class seat count"
         onChange={handleChange}
@@ -206,13 +218,14 @@ const UpdateFlight = (props) => {
       <label htmlFor="firstclassPrice">First class seat price: </label>
       <input
         type="text"
+        className="login__input"
         placeholder="First class Price"
         onChange={handleChange}
         name="firstclassPrice"
         value={formData.firstclassPrice}
       />
       <br />
-      <button className="button" onClick={updateFlight}>
+      <button className="login__submit" onClick={updateFlight}>
         Update Flight
       </button>
     </form>

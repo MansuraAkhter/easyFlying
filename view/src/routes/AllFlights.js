@@ -15,16 +15,18 @@ const AllFlights = (props) => {
     setRefresh((prev) => !prev);
   }
   return (
-    <div>
+    <div className="container-mid">
       {allflights.length > 0
         ? allflights.map((flight) => {
             return (
-              <div key={flight.flightID}>
+              <div key={flight.flightID} className="flight-container">
                 <div>Airline Name: {flight.airlineName}</div>
-                <div>From: {flight.source}</div>
-                <div>Sorce Airport: {flight.sourceAirport}</div>
-                <div>To: {flight.destination}</div>
-                <div>Destination Airport: {flight.destinationAirport}</div>
+                <div>
+                  From: {flight.source}, {flight.sourceAirport}
+                </div>
+                <div>
+                  To: {flight.destination}, {flight.destinationAirport}
+                </div>
                 <div>
                   Departure Time:
                   {new Date(flight.departureDateTime).toUTCString()}
@@ -39,8 +41,16 @@ const AllFlights = (props) => {
                 <div>First class seat count: {flight.firstclassSeat}</div>
                 <div>First class seat price: {flight.firstclassPrice}</div>
                 <br></br>
-                <Link to={`/admin/updateflight/${flight.flightID}`}>Edit</Link>
-                <button onClick={() => deleteFlight(flight.flightID)}>
+                <Link
+                  className="link"
+                  to={`/admin/updateflight/${flight.flightID}`}
+                >
+                  Edit
+                </Link>
+                <button
+                  className="link"
+                  onClick={() => deleteFlight(flight.flightID)}
+                >
                   Delete{" "}
                 </button>
               </div>
