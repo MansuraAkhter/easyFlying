@@ -7,13 +7,14 @@ module.exports.search = async (body) => {
     firstDepartureDateTime,
     secondDepartureDateTime,
   } = body;
+  console.log(firstDepartureDateTime, secondDepartureDateTime);
   const [results, feilds] = await db.query(
     "Select * from flight where source like ? and destination like ? and departureDateTime >= ? and departureDateTime <= ?",
     [
       "%" + source + "%",
       "%" + destination + "%",
-      firstDepartureDateTime,
-      secondDepartureDateTime,
+      new Date(firstDepartureDateTime),
+      new Date(secondDepartureDateTime),
     ]
   );
   console.log(results);

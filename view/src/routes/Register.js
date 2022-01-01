@@ -4,13 +4,14 @@ import { useNavigate } from "react-router-dom";
 
 const Register = () => {
   const navigate = useNavigate();
-  const [email, setEmail] = useState("mansura1@gmail.com");
-  const [password, setPassword] = useState("1234");
-  const [confirmPass, setConfirmPass] = useState("1234");
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPass, setConfirmPass] = useState("");
 
   async function register() {
     if (password != confirmPass) {
-      window.alert("password donot match");
+      window.alert("passwords do not match");
       return;
     }
     const results = await axios.post("/api/user/register", {
@@ -26,6 +27,15 @@ const Register = () => {
 
   return (
     <div className="container-mid">
+      <input
+        type="text"
+        value={name}
+        placeholder="Name"
+        className="login__input"
+        onChange={(event) => {
+          setName(event.target.value);
+        }}
+      />
       <input
         type="text"
         value={email}

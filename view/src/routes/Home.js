@@ -27,18 +27,19 @@ function Home() {
     const firstDepartureDateTime =
       firstDepatureDate.getFullYear() +
       "-" +
-      firstDepatureDate.getMonth() +
+      (firstDepatureDate.getMonth() + 1) +
       "-" +
-      firstDepatureDate.getDay() +
+      firstDepatureDate.getDate() +
       " 00:00:00";
     const secondDepartureDateTime =
       secondDepatureDate.getFullYear() +
       "-" +
-      secondDepatureDate.getMonth() +
+      (secondDepatureDate.getMonth() + 1) +
       "-" +
-      secondDepatureDate.getDay() +
+      secondDepatureDate.getDate() +
       " 00:00:00";
-
+    console.log(firstDepartureDateTime);
+    console.log(secondDepartureDateTime);
     setFormData((prevFormData) => {
       return {
         ...prevFormData,
@@ -102,7 +103,6 @@ function Home() {
         <div>
           <div className="info">Available Flights</div>
           {allFlights.map((flight) => {
-            console.log(flight);
             return (
               <div className="flight-container">
                 <div>{flight.airlineName}</div>

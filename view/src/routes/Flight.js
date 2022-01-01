@@ -3,6 +3,7 @@ import axios from "axios";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import TimePicker from "react-time-picker";
+
 const Flight = () => {
   const [formData, setFormData] = useState({
     airlineName: "",
@@ -34,24 +35,26 @@ const Flight = () => {
   async function addFlight(event) {
     event.preventDefault();
     console.log(formData);
+    console.log(depatureDate);
     const departureDateTime =
       depatureDate.getFullYear() +
       "-" +
-      depatureDate.getMonth() +
+      (depatureDate.getMonth() + 1) +
       "-" +
-      depatureDate.getDay() +
+      depatureDate.getDate() +
       " " +
       departureTime +
       ":00";
     const arrivalDateTime =
       arrivalDate.getFullYear() +
       "-" +
-      arrivalDate.getMonth() +
+      (arrivalDate.getMonth() + 1) +
       "-" +
-      arrivalDate.getDay() +
+      arrivalDate.getDate() +
       " " +
       arrivalTime +
       ":00";
+    console.log(departureDateTime);
     console.log(arrivalDateTime);
     setFormData((prevFormData) => {
       return {

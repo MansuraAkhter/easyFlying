@@ -27,18 +27,19 @@ function Search() {
     const firstDepartureDateTime =
       firstDepatureDate.getFullYear() +
       "-" +
-      firstDepatureDate.getMonth() +
+      (firstDepatureDate.getMonth() + 1) +
       "-" +
-      firstDepatureDate.getDay() +
+      firstDepatureDate.getDate() +
       " 00:00:00";
     const secondDepartureDateTime =
       secondDepatureDate.getFullYear() +
       "-" +
-      secondDepatureDate.getMonth() +
+      (secondDepatureDate.getMonth() + 1) +
       "-" +
-      secondDepatureDate.getDay() +
+      secondDepatureDate.getDate() +
       " 00:00:00";
-
+    console.log(firstDepartureDateTime);
+    console.log(secondDepartureDateTime);
     setFormData((prevFormData) => {
       return {
         ...prevFormData,

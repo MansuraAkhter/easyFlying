@@ -5,6 +5,7 @@ const jwt = require("jsonwebtoken");
 
 module.exports.register = async (req, res) => {
   const body = req.body;
+  const name = body.name;
   const email = body.email;
   const password = body.password;
   const hashedPass = await bcrypt.hash(password, 10);
@@ -12,7 +13,11 @@ module.exports.register = async (req, res) => {
   try {
     const emailResult = await passenger.emailExists(email);
     if (emailResult.length == 0) {
-      const userCreateResult = await passenger.createUser(email, hashedPass);
+      const userCreateResult = await passenger.createUser(
+        name,
+        email,
+        hashedPass
+      );
       res.send({ success: true, msg: "user created" });
     } else {
       res.send("email exists in the database");
