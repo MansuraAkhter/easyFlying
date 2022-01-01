@@ -40,8 +40,8 @@ app.post("/api/user/checklogin", passenger.checklogin);
 app.post("/api/user/login", passenger.login);
 app.post("/api/user/searchflights", searchflights.search);
 app.get("/api/user/getflight/:flightID", flights.getflight);
-app.post("/api/user/bookflight/:flightID", searchflights.book);
-app.get("/api/user/ticket/", searchflights.getUserTickets);
+app.post("/api/user/bookflight/:flightID", auth.user, searchflights.book);
+app.get("/api/user/ticket/", auth.user, searchflights.getUserTickets);
 
 app.listen(8080, () => {
   console.log("Server is running...");

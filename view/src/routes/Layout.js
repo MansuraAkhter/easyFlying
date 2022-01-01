@@ -37,6 +37,9 @@ const Layout = (props) => {
               </Link>
             </>
           )}
+          <Link className="link" to="/tickets">
+            My Tickets
+          </Link>
         </div>
       </div>
       <Outlet />

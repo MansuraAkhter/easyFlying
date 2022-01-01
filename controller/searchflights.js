@@ -12,7 +12,7 @@ module.exports.search = async (req, res) => {
 };
 
 module.exports.book = async (req, res) => {
-  const userID = 1; // change later
+  const userID = req.user.userID;
   const flightID = req.params.flightID;
   const { flightType, seatCount } = req.body;
   try {
@@ -70,7 +70,8 @@ module.exports.book = async (req, res) => {
 };
 
 module.exports.getUserTickets = async (req, res) => {
-  const userID = 1;
+  const userID = req.user.userID;
+  console.log(userID);
   try {
     const userTickets = await searchflights.getUserTickets(userID);
     res.send(userTickets);

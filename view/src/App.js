@@ -11,6 +11,7 @@ import axios from "axios";
 import UpdateFlight from "./routes/UpdateFlight";
 import Book from "./routes/Book";
 import AdminLayout from "./routes/AdminLayout";
+import Tickets from "./routes/Tickets";
 
 const App = () => {
   const [auth, setAuth] = useState(false);
@@ -31,6 +32,7 @@ const App = () => {
       <Route path="/" element={<Layout auth={auth} />}>
         <Route path="/login" element={<Login setAuth={setAuth} />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/tickets" element={<Tickets />} />
         <Route path="/book/:flightID" element={<Book />} />
         <Route index element={<Home />} />
       </Route>
