@@ -65,6 +65,9 @@ const Flight = () => {
     });
     const results = await axios.post("/api/admin/addflights", formData);
     console.log(results.data);
+    if (results.data.success) {
+      window.alert("New Flight Added!");
+    }
   }
 
   return (

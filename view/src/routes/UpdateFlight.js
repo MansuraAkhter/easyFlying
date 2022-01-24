@@ -74,6 +74,9 @@ const UpdateFlight = (props) => {
       formData
     );
     console.log(results.data);
+    if (results.data.success) {
+      window.alert("Flight updated!");
+    }
   }
   return (
     <form className="container-mid">
